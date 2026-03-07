@@ -36,15 +36,8 @@ Log in to the [Azure Portal](https://portal.azure.com) and create a **Resource G
 
 ### 2. Storage Configuration
 Since we are already inside the `Databricks_project1` Resource Group, any resource you create here will be automatically organized into this group.
-
-| Action | Visual Reference |
-| :--- | :--- |
-| **Start Creation** | ![Create Resource](images/First_resource_storage1.png) |
-| **Marketplace Search** | ![Search Storage](images/First_resource_storage1_MarketPlace.png) |
-
 #### **Why is this the first step?**
 In a Databricks environment, the **Storage Account** acts as your **Data Lake**.
-
 > **The Analogy:** Think of Azure Databricks as a high-performance **engine** and the Storage Account as the **fuel tank**. You can turn the engine off to save gas, but you never want to throw away the fuel!
 
 #### **What is a Data Lake?**
@@ -53,9 +46,20 @@ A Data Lake is a "digital warehouse" that doesn't care what format your data is 
 * **Persistent Storage:** Databricks clusters are expensive, so we turn them off when not in use. The Storage Account is **permanent**; your data stays safe even when Databricks is "sleeping."
 * **Security:** Since it is in your project folder (Resource Group), you can decide exactly which users or clusters have the "keys" to the data.
 
+| Action | Visual Reference |
+| :---- | :---- |
+| **Start Creation** | ![Create Resource](images/First_resource_storage1.png) |
+| **Marketplace Search** | ![Search Storage](images/First_resource_storage1_MarketPlace.png) |
+| **Storage Account Basics Configuration** | ![Create Resource](images/storage_account_basics.png) |
+
+This section of the Azure setup is where you define how people and tools (like Databricks) are allowed to talk to your data. Think of it as setting the "House Rules" for your digital warehouse.
+
+> **⚠️ Important Setting:** > When clicking through the setup tabs, go to the **Advanced** tab, look for **"Enable hierarchical namespace,"** and **check the box**.
+**Why?** Without this, Azure treats your data like a flat pile of files. With it checked, it acts like a real **file system** with folders and sub-folders. This makes Databricks run much faster because it can find files instantly. This officially turns a standard Storage Account into **Azure Data Lake Storage (ADLS) Gen2**.
+
+
 #### **Execution: Deploying ADLS Gen2**
 Deploy a **Storage Account** with **Hierarchical Namespace** enabled. This acts as our Bronze, Silver, and Gold storage layers.
 
-> **⚠️ Important Setting:** > When clicking through the setup tabs, go to the **Advanced** tab, look for **"Enable hierarchical namespace,"** and **check the box**.
 
-**Why?** Without this, Azure treats your data like a flat pile of files. With it checked, it acts like a real **file system** with folders and sub-folders. This makes Databricks run much faster because it can find files instantly. This officially turns a standard Storage Account into **Azure Data Lake Storage (ADLS) Gen2**.
+
