@@ -1,5 +1,9 @@
 # 🚀 End-to-End Data Engineering: Incremental ETL Lab with Azure Databricks
+
+This repository provides a hands-on guide to mastering **Incremental Data Ingestion** and transformation using **Azure Databricks**, **ADLS Gen2**, and the **Medallion Architecture**.
+
 ---
+
 ## 🏗️ Project Architecture
 This diagram illustrates the end-to-end data pipeline from source ingestion to final reporting.
 
@@ -20,14 +24,7 @@ Ensure you have the following ready before starting:
 ## 🛠️ Step 1: Azure Environment Setup
 
 ### 1. Resource Group Creation
-A **Resource Group** is a logical container for your Azure services. 
-
-> [!TIP]
-> **Why use them?** Think of it as a project folder. If you delete the folder (Resource Group), everything inside—clusters, storage, and databases—is deleted instantly, preventing unwanted costs.
-
-#### **Execution**
-1. Log in to the [Azure Portal](https://portal.azure.com).
-2. Create a Resource Group named `Databricks_project1`.
+Create a Resource Group named `Databricks_project1` to act as the container for all lab resources.
 
 | Action | Visual Reference |
 | :--- | :--- |
@@ -37,55 +34,42 @@ A **Resource Group** is a logical container for your Azure services.
 ---
 
 ### 2. Storage Configuration (ADLS Gen2)
-The **Storage Account** is the "Fuel Tank" for your Databricks "Engine." While Databricks processes the data, the Storage Account keeps it safe permanently.
+The **Storage Account** serves as the landing zone for our raw data.
 
-#### **Step-by-Step Configuration**
+1. **Search Marketplace:** Search for "Storage account" and click **Create**.
+2. **Basics:** Link it to your `Databricks_project1` resource group.
+3. **Advanced:** 🔑 **Enable hierarchical namespace** to activate Data Lake Gen2.
 
-| Step | Portal View |
+| Step | Visual Reference |
 | :--- | :--- |
-| **Search Marketplace** | ![Search Storage](images/First_resource_storage1_MarketPlace.png) |
-| **Basic Settings** | ![Basics Configuration](images/storage_account_basics.png) |
-| **Networking** | ![Networking Configuration](images/Networking_Configuration.png) |
-| **Data Protection** | ![Data Protection Configuration](images/Data_Protection_Configuration.png) |
-
-#### 🔑 The Most Important Setting
-When configuring the **Advanced** tab, you **must** enable the Hierarchical Namespace.
-
-> [!IMPORTANT]
-> **Enable Hierarchical Namespace:** Checking this box transforms a standard Storage Account into **Azure Data Lake Storage (ADLS) Gen2**. This allows for folder-level security and significantly faster data processing in Databricks.
-
-| Setting | Visual Reference |
-| :--- | :--- |
-| **Enable ADLS Gen2** | ![Advanced Configuration](images/Advanced_Configuration.png) |
-| **Encryption** | ![Encryption Configuration](images/Encryption_Configuration.png) |
+| **Marketplace** | ![Search Storage](images/First_resource_storage1_MarketPlace.png) |
+| **Networking** | ![Networking](images/Networking_Configuration.png) |
+| **ADLS Gen2 Enable** | ![Advanced Tab](images/Advanced_Configuration.png) |
 
 ---
 
-## ✅ Deployment Completed
-Once you click **Review + Create**, your Data Lake foundation is ready.
+### 3. Data Lake Ingestion Structure
+Now we prepare the specific folders where our raw files will be stored.
 
-![Deploying ADLS Gen2](images/storage_account_deployment.png)
----
+#### **A. Create a Container**
+Create a container named `source`. This will hold all our incoming raw data.
 
-## ✅ Deployment Completed
-Once you click **Review + Create**, your Data Lake foundation is ready.
+![Create Container](images/container_storage_databricks01p01.png)
 
-![Deploying ADLS Gen2](images/storage_account_deployment.png)
+#### **B. Create Directories & Upload Data**
+Inside the `source` container, create a directory called `orders` and upload your raw CSV/JSON files.
+
+| Action | Visual Reference |
+| :--- | :--- |
+| **Add Directory** | ![Add Directory](images/folder_container_storage_databricks01p01.png) |
+| **Upload Files** | ![Upload Process](images/upload_folder_container_storage_databricks01p01.png) |
+| **Final View** | ![Files Uploaded](images/source_folders_datauplodedin.png) |
 
 ---
 
 ## ⚠️ Troubleshooting: Git Remote Sync
-During the setup of this repository, a common "Repository Not Found" error occurred due to a mismatch between the local remote URL and the renamed GitHub repository.
+If you encounter a `Not Found` error during your first push, verify your remote URL:
 
-**The Error:**
-> `fatal: repository 'https://github.com/MomoGasmi/-End-to-End...git/' not found`
-
-**The Fix:**
-To align the local environment with the new GitHub URL, the following commands were used:
 ```bash
 git remote set-url origin [https://github.com/MomoGasmi/End-to-End-Data-Engineering-Incremental-ETL-Lab-with-Azure-Databricks-.git](https://github.com/MomoGasmi/End-to-End-Data-Engineering-Incremental-ETL-Lab-with-Azure-Databricks-.git)
 git pull origin main --rebase
-
----
-## 🛠️ Step 1: Azure Environment Setup
-
