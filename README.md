@@ -76,7 +76,7 @@ To implement a structured ETL pipeline, we create containers for each stage of t
    * `silver`: To store filtered and cleaned data.
    * `gold`: To store business-level aggregates for reporting.
 
-![Medallion Containers](images/image_a8d798.png)
+![Medallion Containers](images/final_cntainers.png)
 
 > [!IMPORTANT]
 > **Current Status:** At this stage, the `bronze`, `silver`, and `gold` containers are **empty**. They will be populated automatically by our Databricks notebooks in the upcoming steps. Only the `source` container contains the initial raw files.
