@@ -67,15 +67,6 @@ Inside the `source` container, create a directory called `orders` and upload you
 
 ---
 
-## ⚠️ Troubleshooting: Git Remote Sync
-If you encounter a `Not Found` error during your first push, verify your remote URL:
-
-```bash
-git remote set-url origin [https://github.com/MomoGasmi/End-to-End-Data-Engineering-Incremental-ETL-Lab-with-Azure-Databricks-.git](https://github.com/MomoGasmi/End-to-End-Data-Engineering-Incremental-ETL-Lab-with-Azure-Databricks-.git)
-git pull origin main --rebase
-
----
-
 ### 4. Medallion Architecture Folders
 To implement a structured ETL pipeline, we create containers for each stage of the **Medallion Architecture**. 
 
@@ -109,3 +100,13 @@ In the Databricks UI:
 
 ### 3. Granting Permissions
 To allow Databricks to write into the `bronze`, `silver`, and `gold` folders, you must go to the **Storage Account IAM** settings and assign your Databricks identity the **Storage Blob Data Contributor** role.
+
+
+---
+
+## ⚠️ Troubleshooting: Git Remote Sync
+If you encounter a `Not Found` error during your first push, verify your remote URL:
+
+```bash
+git remote set-url origin [https://github.com/MomoGasmi/End-to-End-Data-Engineering-Incremental-ETL-Lab-with-Azure-Databricks-.git](https://github.com/MomoGasmi/End-to-End-Data-Engineering-Incremental-ETL-Lab-with-Azure-Databricks-.git)
+git pull origin main --rebase
