@@ -65,5 +65,27 @@ When configuring the **Advanced** tab, you **must** enable the Hierarchical Name
 Once you click **Review + Create**, your Data Lake foundation is ready.
 
 ![Deploying ADLS Gen2](images/storage_account_deployment.png)
+---
 
-## 🛠️ Step 2: DataBricks Environment Setup
+## ✅ Deployment Completed
+Once you click **Review + Create**, your Data Lake foundation is ready.
+
+![Deploying ADLS Gen2](images/storage_account_deployment.png)
+
+---
+
+## ⚠️ Troubleshooting: Git Remote Sync
+During the setup of this repository, a common "Repository Not Found" error occurred due to a mismatch between the local remote URL and the renamed GitHub repository.
+
+**The Error:**
+> `fatal: repository 'https://github.com/MomoGasmi/-End-to-End...git/' not found`
+
+**The Fix:**
+To align the local environment with the new GitHub URL, the following commands were used:
+```bash
+git remote set-url origin [https://github.com/MomoGasmi/End-to-End-Data-Engineering-Incremental-ETL-Lab-with-Azure-Databricks-.git](https://github.com/MomoGasmi/End-to-End-Data-Engineering-Incremental-ETL-Lab-with-Azure-Databricks-.git)
+git pull origin main --rebase
+
+---
+## 🛠️ Step 1: Azure Environment Setup
+
