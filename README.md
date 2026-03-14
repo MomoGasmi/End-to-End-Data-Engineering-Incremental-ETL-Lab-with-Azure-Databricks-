@@ -73,3 +73,39 @@ If you encounter a `Not Found` error during your first push, verify your remote 
 ```bash
 git remote set-url origin [https://github.com/MomoGasmi/End-to-End-Data-Engineering-Incremental-ETL-Lab-with-Azure-Databricks-.git](https://github.com/MomoGasmi/End-to-End-Data-Engineering-Incremental-ETL-Lab-with-Azure-Databricks-.git)
 git pull origin main --rebase
+
+---
+
+### 4. Medallion Architecture Folders
+To implement a structured ETL pipeline, we create containers for each stage of the **Medallion Architecture**. 
+
+1. Navigate to your Storage Account -> **Containers**.
+2. Create the following containers:
+   * `bronze`: To store raw data as Delta tables.
+   * `silver`: To store filtered and cleaned data.
+   * `gold`: To store business-level aggregates for reporting.
+
+![Medallion Containers](images/image_a8d798.png)
+
+> [!IMPORTANT]
+> **Current Status:** At this stage, the `bronze`, `silver`, and `gold` containers are **empty**. They will be populated automatically by our Databricks notebooks in the upcoming steps. Only the `source` container contains the initial raw files.
+
+---
+
+## 🛠️ Step 2: Databricks Environment Setup
+
+Now that our "Data Lake" storage is structured, we must set up the compute power to process it.
+
+### 1. Launching the Workspace
+1. Search for **Azure Databricks** in the Azure Portal.
+2. Create a new workspace in your `Databricks_project1` resource group.
+3. Once deployed, click **Launch Workspace**.
+
+### 2. Creating the Cluster
+In the Databricks UI:
+* Go to **Compute** -> **Create Cluster**.
+* Select **Single Node** (to minimize costs).
+* **Crucial:** Set **Auto-Termination** to 20 minutes.
+
+### 3. Granting Permissions
+To allow Databricks to write into the `bronze`, `silver`, and `gold` folders, you must go to the **Storage Account IAM** settings and assign your Databricks identity the **Storage Blob Data Contributor** role.
