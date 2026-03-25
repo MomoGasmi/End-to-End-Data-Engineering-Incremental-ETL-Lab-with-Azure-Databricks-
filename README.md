@@ -13,9 +13,24 @@ This diagram illustrates the end-to-end data pipeline from source ingestion to f
 
 ## 📋 Prerequisites
 Ensure you have the following ready before starting:
-* **Azure Account:** An active subscription.
+
+* **Azure Account:** An active subscription is required.
+    > [!IMPORTANT]
+    > **Free Trial vs. Pay-As-You-Go:** > New accounts get $200 credit for 30 days. After 30 days, Azure disables the subscription to prevent accidental charges. To continue, you must **Upgrade to Pay-As-You-Go**. You will still have access to free services for 12 months, but you only get charged for usage beyond the free limits.
+
+* **💰 Financial Safety (Preventing Bills):** If your subscription was disabled or you have upgraded, it is **critical** to set a **Budget Alert** to avoid unexpected costs. While budgets don't stop services automatically, they provide crucial oversight.
+    
+    **Steps to Set a 1.00 € Budget:**
+    1. Navigate to **Cost Management + Billing** in the Azure Portal.
+    2. Select **Budgets** and click **+Add**.
+    3. Define the **Scope** (Subscription) and set a budget of **1.00 €** per month.
+    4. Configure **Alerts** for 25%, 50%, and 80% thresholds (Actual and Forecasted).
+
+    | Budget Configuration | Alert Confirmation |
+    | :--- | :--- |
+    | ![Budget Setup](images/Budget_Cost_Managment.png)| ![Budget Active](images/Budget_Alert_Condition.png) |
+
 * **VS Code Extensions:** Ensure the **Azure** and **Databricks** extensions are installed.
-* **Workspace:** An existing Azure Databricks workspace.
 
 ![Databricks Extensions](images/DataBricks_Extensions_installed.jpg)
 
@@ -89,8 +104,16 @@ Now that our "Data Lake" storage is structured, we must set up the compute power
 
 ### 1. Launching the Workspace
 1. Search for **Azure Databricks** in the Azure Portal.
-2. Create a new workspace in your `Databricks_project1` resource group.
-3. Once deployed, click **Launch Workspace**.
+2. Create a new workspace in your `Databricks_project1` resource group using the following configuration:
+
+| Configuration Tab | Description | Visual Reference |
+| :--- | :--- | :--- |
+| **Basics** | Set Subscription, Resource Group, and Workspace name. | ![Basics](images/DataBricks_workspace_basics_Config.png) |
+| **Networking** | Configure VNet and Connectivity settings. | ![Networking](images/DataBricks_workspace_Networking_Config.png) |
+| **Encryption** | Standard managed encryption settings. | ![Encryption](images/DataBricks_workspace_Encryption_Config.png) |
+| **Security** | Enhanced security and compliance options. | ![Security](images/DataBricks_workspace_Security_Config.png) |
+
+3. Once the deployment is complete, click **Launch Workspace**.
 
 ### 2. Creating the Cluster
 In the Databricks UI:
